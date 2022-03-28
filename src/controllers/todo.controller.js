@@ -5,6 +5,7 @@ const router=express.Router();
 const Todo=require("../models/todo.model");
 const authenticate=require("../middleware/authenticate")
 router.post("",authenticate,async(req,res)=>{
+    req.body.user_id = req.user._id
     try{
         const todo =await Todo.create(req.body)
         return res.status(200).send(todo)
